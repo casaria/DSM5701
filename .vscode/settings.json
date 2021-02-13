@@ -1,4 +1,7 @@
 {
     "gitHistory.hideCommitViewExplorer": true,
-    "gitHistory.alwaysPromptRepositoryPicker": true
+    "gitHistory.alwaysPromptRepositoryPicker": true,
+    "files.associations": {
+        "cmath": "cpp"
+    }
 }

@@ -1,0 +1,47 @@
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 21437][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 21437][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 21441][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 23862][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 23862][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 23865][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 26287][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 26287][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 26290][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 28711][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 28712][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 28715][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 31136][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 31136][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 31140][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 33561][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 33561][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 33564][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..

@@ -4,5 +4,8 @@
     "recommendations": [
         "huizhou.githd",
         "platformio.platformio-ide"
+    ],
+    "unwantedRecommendations": [
+        "ms-vscode.cpptools-extension-pack"
     ]
 }

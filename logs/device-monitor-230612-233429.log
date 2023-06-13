@@ -1,0 +1,253 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13192
+load:0x40080400,len:3028
+entry 0x400805e4
+[     8][D][esp32-hal-cpu.c:244] setCpuFrequencyMhz(): PLL: 480 / 2 = 240 Mhz, APB: 80000000 Hz
+Start
+E (38) gpio: GPIO can only be used as input mode
+[    45][E][esp32-hal-gpio.c:130] __pinMode(): GPIO config failed
+E (40) gpio: gpio_set_level(226): GPIO output gpio_num error
+TFT setup complete [   661][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 0 - WIFI_READY
+[   763][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 2 - STA_START
+eFuse Vref:1079 mVConnecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[  9304][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[  9305][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 200 - BEACON_TIMEOUT
+[  9308][D][WiFiGeneric.cpp:1077] _eventCallback(): WiFi Reconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 11734][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 11734][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 11737][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 14162][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 14162][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 14166][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 16589][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 16589][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 16593][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 19014][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 19015][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 19018][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 21440][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 21440][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 21443][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 23865][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 23865][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 23869][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 26290][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 26291][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 26294][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 28715][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 28716][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 28719][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 31141][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 31141][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 31144][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 33566][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 33566][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 33570][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 35991][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 35991][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 35995][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 38416][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 38417][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 38420][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 40841][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 40842][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 40845][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 43267][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 43267][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 43270][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 45692][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 45692][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 45696][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 48117][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 48118][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 48121][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 50542][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 50543][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 50546][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 52968][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 52968][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 52971][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 55393][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 55393][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 55397][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 57818][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 57819][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 57822][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 60243][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 60244][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 60247][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 62669][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 62669][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 62672][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 65094][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 65094][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 65098][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 67519][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 67520][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 67523][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 69944][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 69945][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 69948][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 72370][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 72370][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 72373][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 74795][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 74795][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 74799][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..
+[ 77220][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 77220][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 77224][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+Connecting to WiFi..
+Connecting to WiFi..
+Connecting to WiFi..

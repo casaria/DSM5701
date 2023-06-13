@@ -1,23 +1,22 @@
 
 #define LOAD_GFXFF
 
-
 #define CF_OL24 &Orbitron_Light_24
 #define CF_OL32 &Orbitron_Light_32
 #define CF_RT24 &Roboto_Thin_24
 #define CF_S24 &Satisfy_24
 #define CF_Y32 &Yellowtail_32
 
-//fix CPU  idle WD trigger
+// fix CPU  idle WD trigger
 #include "soc/timer_group_struct.h"
 #include "soc/timer_group_reg.h"
 
 #include "Arduino.h"
-//#include  <avr/wdt.h>
+// #include  <avr/wdt.h>
 #include <EEPROM.h>
-//#include "heltec.h"
+// #include "heltec.h"
 #include <math.h>
-//#include "oled/OLEDDisplayUi.h"
+// #include "oled/OLEDDisplayUi.h"
 #include <string.h>
 #include <WiFi.h>
 #include <PubSubClient.h>
@@ -40,9 +39,9 @@
 #include <esp_task_wdt.h>
 #include "esp_adc_cal.h"
 
-//#include <task.h>
+// #include <task.h>
 
-//#include "images.h"
+// #include "images.h"
 #include "bmp.h"
 
 // Optional functionality. Comment out defines to disable feature
@@ -64,10 +63,10 @@
 
 #ifdef HTTP_OTA
 /* Over The Air automatic firmware update from a web server.  ESP8266 will contact the
-    *  server on every boot and check for a firmware update.  If available, the update will
-    *  be downloaded and installed.  Server can determine the appropriate firmware for this 
-    *  device from any combination of HTTP_OTA_VERSION, MAC address, and firmware MD5 checksums.
-    */
+ *  server on every boot and check for a firmware update.  If available, the update will
+ *  be downloaded and installed.  Server can determine the appropriate firmware for this
+ *  device from any combination of HTTP_OTA_VERSION, MAC address, and firmware MD5 checksums.
+ */
 #include <HTTPClient.h>
 #include <HTTPUpdate.h>
 
@@ -121,35 +120,36 @@ Ticker watchdog;
 #define timeSeconds 3
 #define CHAR_SPACING 1
 
-const char *UNIT = "DOOR2";
+const char *UNIT = "DSM1";
 const char *GROUP = "WFS";
 
 // Define the number of devices we have in the chain and the hardware interface
 // NOTE: These pin numbers will probably not work with your hardware and may
 // need to be adaptedW // RED   // blue FC16_HW
 #define MAX_DEVICES 8
-#define MATRIX_INTENSITY 2
+
 #define MATRIC_AUTO_ADJUST_INTENSITY
 
 #define DEMO_DURATION 3000
 typedef void (*Demo)(void);
 
-#define HARDWARE_TYPE MD_MAX72XX::FC16_HW //ICSTATION_HW  //FC16_HW
-#define CLK_PIN 15                        //13
-#define DATA_PIN 12                       //14  //2
-#define CS_PIN 13                         //27  //17
+#define HARDWARE_TYPE MD_MAX72XX::FC16_HW // ICSTATION_HW  //FC16_HW
+#define CLK_PIN 15                        // 13
+#define DATA_PIN 12                       // 14  //2
+#define CS_PIN 13                         // 27  //17
 
 //
-//extern Heltec_ESP32 Heltec;
-//OLEDDisplayUi ui( Heltec.display );
+// extern Heltec_ESP32 Heltec;
+// OLEDDisplayUi ui( Heltec.display );
 
-//TimeZone variables
-String TZAPIKEY = "WO3E5U09CCNS"; //http://timezonedb.com used to get gmtOffset
+// TimeZone variables
+String TZAPIKEY = "WO3E5U09CCNS"; // http://timezonedb.com used to get gmtOffset
 String payload, TZone, lastUpdate;
 String coordinate;   // = lat,lon
-String coordinateTZ; //lat=xx.xxx&lng=xxx.xxx
+String coordinateTZ; // lat=xx.xxx&lng=xxx.xxx
 long gmtOffset_sec;
-struct astroSunTimes {
+struct astroSunTimes
+{
   float sunSet;
   float sunRise;
 };
@@ -183,8 +183,10 @@ char shortTimeString[10];
 int cheer_red = 0;
 int cheer_green = 0;
 int cheer_blue = 0;
-unsigned int rgb565Decimal = 8090; //5338; //0x8410;
+unsigned int rgb565Decimal = 8090; // 5338; //0x8410;
 unsigned int newrgb565Decimal;
+int displayIntensity = 2;
+
 String rgb565Hex;
 String colourString = "CASARIA";
 String strData;
@@ -197,13 +199,13 @@ int vref = 1100;
 int btnCick = false;
 
 // SPI hardware interface
-//MD_MAX72XX mx = MD_MAX72XX(HARDWARE_TYPE, CS_PIN, MAX_DEVICES);
+// MD_MAX72XX mx = MD_MAX72XX(HARDWARE_TYPE, CS_PIN, MAX_DEVICES);
 // Arbitrary pins/
-//MD_MAX72XX mx = MD_MAX72XX(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
+// MD_MAX72XX mx = MD_MAX72XX(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
 
 // Text parameters
 
-MD_Parola P = MD_Parola(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
+MD_Parola MD = MD_Parola(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
 
 TFT_eSPI tft = TFT_eSPI(135, 240); // Invoke custom library
 Button2 btn1(BUTTON_1);
@@ -289,16 +291,16 @@ struct sCatalog
 
 sCatalog catalog[] =
     {
-        {PA_PRINT, "WFS-VS", 1, 2},
-        {PA_SCROLL_UP, "LEFT: ", 1, 1},
-        {PA_SCROLL_DOWN_LEFT, C1, 1, 4},
-        {PA_SCROLL_DOWN, "RIGHT: ", 1, 1},
-        {PA_SCROLL_DOWN_RIGHT, C2, 1, 4},
+        {PA_PRINT, "WFS-VS", 1, 1},
+        {PA_SCROLL_UP, "LEFT: ", 1, 2},
+        {PA_SCROLL_DOWN_LEFT, C1, 3, 3},
+        {PA_SCROLL_DOWN, "RIGHT: ", 1, 2 },
+        {PA_SCROLL_DOWN_RIGHT, C2, 3, 3},
         {PA_SCROLL_LEFT, "COOL ROOMS", 2, 1},
-//{ PA_FADE, "time", 5, 4},
+//{ PA_FADE, "time" 5, 4},
 #if ENA_SPRITE
-        {PA_SPRITE, "DATA", 2, 1},
-        {PA_SCROLL_DOWN, shortTimeString, 1, 4},
+        {PA_SPRITE,"DATA", 2, 1},
+        {PA_SCROLL_DOWN, shortTimeString, 2, 3},
 #endif
 
         /*
@@ -508,43 +510,7 @@ static const uint8_t PROGMEM pacman2[F_PMAN2 * W_PMAN2] = // ghost pursued by a 
         0xfe,
 };
 
-void wifi_scan()
-{
-  tft.setTextColor(TFT_ORANGE, TFT_BLACK);
-  tft.fillScreen(TFT_BLACK);
-  tft.setTextDatum(MC_DATUM);
-  tft.setTextSize(1);
 
-  tft.drawString("Scan Network", tft.width() / 2, tft.height() / 2);
-
-  WiFi.mode(WIFI_STA);
-  WiFi.disconnect();
-  delay(100);
-
-  int16_t n = WiFi.scanNetworks();
-  tft.fillScreen(TFT_BLACK);
-  if (n == 0)
-  {
-    tft.drawString("no networks found", tft.width() / 2, tft.height() / 2);
-  }
-  else
-  {
-    tft.setTextDatum(TL_DATUM);
-    tft.setCursor(0, 0);
-    Serial.printf("Found %d net\n", n);
-    for (int i = 0; i < n; ++i)
-    {
-      sprintf(buff,
-              "[%d]:%s(%d)",
-              i + 1,
-              WiFi.SSID(i).c_str(),
-              WiFi.RSSI(i));
-      tft.println(buff);
-      ;
-    }
-  }
-  WiFi.mode(WIFI_OFF);
-}
 
 //! Long time delay, it is recommended to use shallow sleep, which can effectively reduce the current consumption
 void espDelay(int ms)
@@ -554,58 +520,6 @@ void espDelay(int ms)
   esp_light_sleep_start();
 }
 
-void showVoltage()
-{
-  static uint64_t timeStamp = 0;
-  if (millis() - timeStamp > 1000)
-  {
-    timeStamp = millis();
-    uint16_t v = analogRead(ADC_PIN);
-    float battery_voltage = ((float)v / 4095.0) * 2.0 * 3.3 * (vref / 1000.0);
-    String voltage = "Voltage :" + String(battery_voltage) + "V";
-    Serial.println(voltage);
-    tft.fillScreen(TFT_BLACK);
-    tft.setTextColor(TFT_RED);
-    tft.setTextDatum(MC_DATUM);
-    tft.drawString(voltage, tft.width() / 2, tft.height() / 2);
-  }
-}
-
-void button_init()
-{
-  btn1.setLongClickHandler([](Button2 &b) {
-    btnCick = false;
-    int r = digitalRead(TFT_BL);
-    tft.fillScreen(TFT_BLACK);
-    tft.setTextColor(TFT_PURPLE, TFT_BLACK);
-    tft.setTextDatum(MC_DATUM);
-    tft.drawString("Press again to wake up", tft.width() / 2, tft.height() / 2);
-    espDelay(6000);
-    digitalWrite(TFT_BL, !r);
-
-    tft.writecommand(TFT_DISPOFF);
-    tft.writecommand(TFT_SLPIN);
-    esp_sleep_enable_ext1_wakeup(GPIO_SEL_35, ESP_EXT1_WAKEUP_ALL_LOW);
-    esp_deep_sleep_start();
-  });
-  btn1.setPressedHandler([](Button2 &b) {
-    Serial.println("Detect Voltage..");
-    btnCick = true;
-  });
-
-  btn2.setPressedHandler([](Button2 &b) {
-    btnCick = false;
-    Serial.println("btn press wifi scan");
-    wifi_scan();
-  });
-}
-
-void button_loop()
-{
-  btn1.loop();
-  btn2.loop();
-}
-
 void reconnect()
 {
   std::string clientId;
@@ -613,7 +527,7 @@ void reconnect()
   // Loop until we're reconnected
   while (!client.connected())
   {
-    Serial.print("Attempting MQTT connection...");
+    //Serial.print("Attempting MQTT connection...");
     // Create a random client ID
 
     /*    String clientId = "ESP32Client-";
@@ -626,7 +540,7 @@ void reconnect()
     // Attempt to connect
     if (client.connect(clientId.c_str(), mqttUser, mqttPassword))
     {
-      Serial.println("connected");
+      //Serial.println("connected");
 
       client.publish("WFS/STATUS", "MAX_ACTIVE");
       client.subscribe("WFS/SENSOR/TEMP1");
@@ -638,12 +552,13 @@ void reconnect()
       client.subscribe("DSM5701/rgb888Decimal", 1);
       client.subscribe("DSM5701/rgb565Decimal", 1);
       client.subscribe("DSM5701/rgb565Hex", 1);
+      client.subscribe("DSM5701/INTENSITY", 1);
     }
     else
     {
-      Serial.print("failed, rc=");
-      Serial.print(client.state());
-      Serial.println(" try again in 5 seconds");
+      //Serial.print("failed, rc=");
+      //Serial.print(client.state());
+      //Serial.println(" try again in 5 seconds");
       // Wait 5 seconds before retrying
       vTaskDelay(5000 / portTICK_RATE_MS);
     }
@@ -651,35 +566,8 @@ void reconnect()
 }
 
 // Checks if motion was detected, sets LED HIGH and starts a timer
-void IRAM_ATTR StatusDecode()
-{
 
-  static bool StartCount = false;
-  bool pinin;
 
-  pinin = digitalRead(statusLED);
-  if (!startTimer)
-  {
-    if (pinin)
-    {
-      startTimer = true;
-      digitalWrite(relay1, HIGH);
-    }
-  }
-  if (pinin)
-    count++;
-  lastTrigger = millis();
-}
-
-void IRAM_ATTR LockOn()
-{
-  doorOpen = false;
-}
-
-void IRAM_ATTR LockOff()
-{
-  doorOpen = true;
-}
 
 uint16_t rgb888torgb565(uint32_t rgb888Pixel)
 {
@@ -701,15 +589,15 @@ void httpOTAquery()
   switch (ret)
   {
   case HTTP_UPDATE_FAILED:
-    Serial.printf("HTTP_UPDATE_FAILED Error (%d): %s\n", httpUpdate.getLastError(), httpUpdate.getLastErrorString().c_str());
+    //Serial.printf("HTTP_UPDATE_FAILED Error (%d): %s\n", httpUpdate.getLastError(), httpUpdate.getLastErrorString().c_str());
     break;
 
   case HTTP_UPDATE_NO_UPDATES:
-    Serial.println("HTTP_UPDATE_NO_UPDATES");
+    //Serial.println("HTTP_UPDATE_NO_UPDATES");
     break;
 
   case HTTP_UPDATE_OK:
-    Serial.println("HTTP_UPDATE_OK");
+    //Serial.println("HTTP_UPDATE_OK");
     break;
   }
 }
@@ -723,19 +611,19 @@ void callback(char *topic, byte *payload, unsigned int length)
   String message(p);
   topicStr = topic;
 
-  Serial.print("Message arrived in topic: ");
-  Serial.println(topic);
+  //Serial.print("Message arrived in topic: ");
+ // Serial.println(topic);
 
-  Serial.print("Message:");
+ // Serial.print("Message:");
   for (i = 0; i < length; i++)
   {
-    Serial.print((char)payload[i]);
+   // Serial.print((char)payload[i]);
   }
 
-  Serial.print((char)payload[i]);
+  //Serial.print((char)payload[i]);
 
-  Serial.println();
-  Serial.println("-----------------------");
+  //Serial.println();
+  //Serial.println("-----------------------");
 
   if (!strcmp(topic, "WFS/SENSOR/TEMP1"))
   {
@@ -744,7 +632,7 @@ void callback(char *topic, byte *payload, unsigned int length)
     memcpy(C1, payload, length);
     C1[length] = 'c';
     C1[length + 1] = NULL;
-    Serial.printf("float Temp1 %3.2f  string: %s\n", tempc1, TEMPC1);
+    //Serial.printf("float Temp1 %3.2f  string: %s\n", tempc1, TEMPC1);
   }
   if (!strcmp(topic, "WFS/SENSOR/TEMP2"))
   {
@@ -753,7 +641,7 @@ void callback(char *topic, byte *payload, unsigned int length)
     memcpy(C2, payload, length);
     C2[length] = 'c';
     C2[length + 1] = NULL;
-    Serial.printf("float Temp2 %3.2f  string: %s\n", tempc2, TEMPC2);
+   // Serial.printf("float Temp2 %3.2f  string: %s\n", tempc2, TEMPC2);
   }
   if (!strcmp(topic, "WFS/SENSOR/HUM1"))
   {
@@ -764,7 +652,7 @@ void callback(char *topic, byte *payload, unsigned int length)
     HUM1[length + 1] = 'r';
     HUM1[length + 2] = 'H';
     HUM1[length + 3] = NULL;
-    Serial.printf("float humidity1 %3.2f  string: %s\n", hum1, szHUM1);
+    //Serial.printf("float humidity1 %3.2f  string: %s\n", hum1, szHUM1);
   }
   if (!strcmp(topic, "WFS/SENSOR/HUM2"))
   {
@@ -775,66 +663,45 @@ void callback(char *topic, byte *payload, unsigned int length)
     HUM2[length + 1] = 'r';
     HUM2[length + 2] = 'H';
     HUM2[length + 3] = NULL;
-    Serial.printf("float humidity1 %3.2f  string: %s\n", hum2, szHUM2);
+    //Serial.printf("float humidity1 %3.2f  string: %s\n", hum2, szHUM2);
   }
-  if (!strcmp(topic, "WFS/CTRL/DOOR1"))
-  {
-    tempc2 = message.toFloat();
-    CMD = message;
-
-    //memcpy(CMD, payload, length);
-
-    CMD[length + 1] = NULL;
-    Serial.printf("door CTRL CMD: %s", CMD);
-  }
-
-  Serial.println();
-  Serial.println("-----------------------");
 
   if (topicStr.endsWith("DSM5701/rgb565Hex"))
   {
 
-    //colourString = newColourString;
+    // colourString = newColourString;
     rgb565Hex = message.toInt();
-    Serial.println("Hex");
+    //Serial.println("Hex");
 
-    Serial.println(rgb565Hex);
+    //Serial.println(rgb565Hex);
   }
 
   if (topicStr.endsWith("DSM5701/rgb888Decimal"))
   {
 
     rgb565Decimal = rgb888torgb565((uint32_t)message.toInt());
-    Serial.println("*******");
+   // Serial.println("*******");
 
-    Serial.println(rgb565Decimal);
-  }
-
-  if (topicStr.endsWith("DSM5701"))
-  {
-
-    colourString = message;
-    //sixteenBitHex = newSixteenBitHex;
-    Serial.println(message);
+    //Serial.println(rgb565Decimal);
   }
 
   if (topicStr.endsWith("DSM5701/rgb565Decimal"))
   {
 
     rgb565Decimal = message.toInt();
-    Serial.println("*******");
+    //Serial.println("*******");
 
-    Serial.println(rgb565Decimal);
+    //Serial.println(rgb565Decimal);
   }
 
   if (topicStr.endsWith("DSM5701/rgbHex"))
   {
 
-    //colourString = newColourString;
+    // colourString = newColourString;
     rgb565Hex = message; //.toInt();
-    Serial.println("Hex");
+    //Serial.println("Hex");
 
-    Serial.println(rgb565Hex);
+    //Serial.println(rgb565Hex);
   }
 
   if (topicStr.endsWith("DSM5701/PUSH-OTA"))
@@ -842,22 +709,17 @@ void callback(char *topic, byte *payload, unsigned int length)
 
     bPushTrigger = true;
 
-    Serial.println(message);
+    //Serial.println(message);
   }
 
-  if (message.startsWith("DSM5701/RED"))
+  if (!strcmp(topic, "DSM5701/INTENSITY"))
   {
-    AlertMode = amRed;
-  }
+    displayIntensity = message.toInt();
+    //MD.setIntensity(displayIntensity);
+    // Serial.println("INTENSITY");
 
-  if (message.startsWith("DSM5701/GREEN"))
-  {
-    AlertMode = amGreen;
-  }
-
-  if (message.startsWith("DSM5701/GREEN"))
-  {
-    AlertMode = amIdle;
+   // Serial.println(displayIntensity);
+  
   }
 }
 
@@ -865,54 +727,55 @@ void getJson(String url)
 {
 
   if (WiFi.status() == WL_CONNECTED)
-  {                            //Check WiFi connection status
-    HTTPClient http;           //Declare an object of class HTTPClient
-    http.begin(url);           //Specify request destination
-    int httpCode = http.GET(); //Send the request
+  {                            // Check WiFi connection status
+    HTTPClient http;           // Declare an object of class HTTPClient
+    http.begin(url);           // Specify request destination
+    int httpCode = http.GET(); // Send the request
     if (httpCode > 0)
-    {                             //Checkthe returning code
-      payload = http.getString(); //Get the request response payload
+    {                             // Checkthe returning code
+      payload = http.getString(); // Get the request response payload
     }
 
-    http.end(); //Close connection
+    http.end(); // Close connection
   }
 }
 
 void geolocation()
 {
 
-  String url,test5;
+  String url, test5;
   url = "http://ip-api.com/json";
   getJson(url);
 
   const size_t capacity = JSON_OBJECT_SIZE(3) + JSON_ARRAY_SIZE(2) + 60;
   DynamicJsonBuffer jsonBuffer(capacity);
   JsonObject &root = jsonBuffer.parseObject(payload);
-  root.printTo(Serial);
+ 
+ 
+  //root.printTo(Serial);
   if (!root.success())
   {
-    Serial.println("parseObject() failed");
+    //Serial.println("parseObject() failed");
     return;
   }
 
   // Extract values
-  Serial.println("Response:");
-  Serial.println(root["lat"].as<char *>());
-  Serial.println(root["lon"].as<char *>());
+  //Serial.println("Response:");
+  //Serial.println(root["lat"].as<char *>());
+  //Serial.println(root["lon"].as<char *>());
   test5 = (root["lon"].as<char *>());
   longitude = test5.toFloat();
-  Serial.printf("Latitude  is : %s , %d   ", test5, longitude);
+  //Serial.printf("Latitude  is : %s , %d   ", test5, longitude);
 
-
-  coordinate = String(root["lat"].as<char *>()) + "," + String(root["lon"].as<char*>()); //do we use this anywhere (?)
-  //coordinatePrev = "lat=" + String(root["lat"].as<char*>()) + "&lon=" + String(root["lon"].as<char*>()); //do we use this anywhere (?)
+  coordinate = String(root["lat"].as<char *>()) + "," + String(root["lon"].as<char *>()); // do we use this anywhere (?)
+  // coordinatePrev = "lat=" + String(root["lat"].as<char*>()) + "&lon=" + String(root["lon"].as<char*>()); //do we use this anywhere (?)
   coordinateTZ = "lat=" + String(root["lat"].as<char *>()) + "&lng=" + String(root["lon"].as<char *>());
-  //mylat = root["lat"];
-  //mylon = root["lon"];
-  // M5.Lcd.println("My Lat/Lon: "+coordinate);
-  Serial.println("My Lat/Lon: " + coordinate);
+  // mylat = root["lat"];
+  // mylon = root["lon"];
+  //  M5.Lcd.println("My Lat/Lon: "+coordinate);
+ // Serial.println("My Lat/Lon: " + coordinate);
 
-  Serial.printf("linux timestamp atY2K: %d %d %d", year(secs2000), month (secs2000), day(secs2000));
+ //  Serial.printf("linux timestamp atY2K: %d %d %d", year(secs2000), month(secs2000), day(secs2000));
 }
 
 /*
@@ -928,16 +791,16 @@ void timeZone()
   JsonObject &root = jsonBuffer.parseObject(payload);
   if (!root.success())
   {
-    Serial.println("parseObject() failed");
+    //Serial.println("parseObject() failed");
     return;
   }
   gmtOffset_sec = root["gmtOffset"];
   const char *temp1 = root["abbreviation"];
   TZone = (String)temp1;
-  Serial.print("GMT Offset = ");
-  Serial.print(gmtOffset_sec);
-  Serial.println(" " + TZone);
-  //M5.Lcd.println("GMT Offset = "+(String)gmtOffset_sec);
+  //Serial.print("GMT Offset = ");
+  //Serial.print(gmtOffset_sec);
+  //Serial.println(" " + TZone);
+  // M5.Lcd.println("GMT Offset = "+(String)gmtOffset_sec);
 }
 
 void auxTask(void *pvParameters)
@@ -948,28 +811,23 @@ void auxTask(void *pvParameters)
 
     if (xSemaphoreTake(serialMutex, (TickType_t)10) == pdTRUE)
     {
-      if (btnCick)
-      {
-        showVoltage();
-      }
-  
-      button_loop();
+
 
       xSemaphoreGive(serialMutex);
-      if (bPushTrigger) {
-          esp_task_wdt_reset();
-          Serial.print("Checking for firmware updates from server http://");
-          Serial.print(HTTP_OTA_ADDRESS);
-          Serial.print(":");
-          Serial.print(HTTP_OTA_PORT);
-          Serial.println(HTTP_OTA_PATH);
-                
-          httpOTAquery();
-          bPushTrigger = false;
+      if (bPushTrigger)
+      {
+        esp_task_wdt_reset();
+        //Serial.print("Checking for firmware updates from server http://");
+        //Serial.print(HTTP_OTA_ADDRESS);
+        //Serial.print(":");
+        //Serial.print(HTTP_OTA_PORT);
+        //Serial.println(HTTP_OTA_PATH);
+
+        httpOTAquery();
+        bPushTrigger = false;
       }
 
       esp_task_wdt_reset();
-
     }
 
     esp_task_wdt_reset();
@@ -986,7 +844,7 @@ void updateMatrix(void *pvParameters)
   while (1)
   {
     // if (xSemaphoreTake (serialMutex, (TickType_t)10) == pdTRUE) {
-    if (P.displayAnimate()) // animates and returns true when an animation is completed
+    if (MD.displayAnimate()) // animates and returns true when an animation is completed
     {
       // rotate the justification if needed
 
@@ -1008,9 +866,9 @@ void updateMatrix(void *pvParameters)
 
       just = PA_CENTER;
       // set up new animation
-      P.displayText(catalog[i].psz, just, catalog[i].speed, catalog[i].pause, catalog[i].effect, catalog[i].effect);
+      MD.displayText(catalog[i].psz, just, catalog[i].speed, catalog[i].pause, catalog[i].effect, catalog[i].effect);
       esp_task_wdt_reset();
-      //vTaskDelay(e);  // wait a while to show the text ...
+      // vTaskDelay(e);  // wait a while to show the text ...
       vTaskDelay(catalog[i].pause / portTICK_PERIOD_MS);
       yield();
       i++;
@@ -1027,13 +885,13 @@ void updatePubSub(void *pvParameters)
   (void)pvParameters;
   while (1)
   {
+    esp_task_wdt_reset();
     if (!client.connected())
     {
-
       reconnect();
+    } else {
+      client.loop();
     }
-    client.loop();
-
     esp_task_wdt_reset();
     vTaskDelay(20 / portTICK_PERIOD_MS);
   }
@@ -1062,7 +920,7 @@ void updateNTP(void *pvParameters)
 void timeout_cb()
 {
   // This sleep happened because of timeout. Do a restart after a sleep
-  Serial.println(F("Watchdog timeout..."));
+  //Serial.println(F("Watchdog timeout..."));
 
 #ifdef DEEP_SLEEP_SECONDS
   // Enter DeepSleep so that we don't exhaust our batteries by countinuously trying to
@@ -1092,6 +950,8 @@ void updateScreen(void *pvParameters)
       time_t t = now();
       sprintf(timeString, "%02i:%02i:%02i", hour(t), minute(t), second(t));
       sprintf(shortTimeString, "%02i:%02i", hour(t), minute(t));
+      MD.setIntensity (displayIntensity);
+
       xSemaphoreGive(serialMutex);
 
       tft.setTextColor(0x39C4, TFT_BLACK);
@@ -1101,7 +961,7 @@ void updateScreen(void *pvParameters)
 
       // tft.setTextDatum(BC_DATUM);
       tft.setTextColor(TFT_ORANGE, TFT_BLACK);
-      tft.setFreeFont(CF_RT24); //CF_OL24 CF_RT24  CF_Y32
+      tft.setFreeFont(CF_RT24); // CF_OL24 CF_RT24  CF_Y32
       tft.drawString(colourString, 80, 110, GFXFF);
       tft.setFreeFont(CF_RT24);
     }
@@ -1113,25 +973,20 @@ void updateScreen(void *pvParameters)
 void setup()
 {
 
-  Serial.begin(115200);
-  Serial.println("Start");
-  pinMode(ac1, INPUT_PULLUP);
-  pinMode(ac2, INPUT_PULLUP);
-  pinMode(relay1, OUTPUT);
-  pinMode(relay2, OUTPUT);
+  //Serial.begin(115200);
+  //Serial.println("Start");
+  //pinMode(ac1, INPUT_PULLUP);
+  //pinMode(ac2, INPUT_PULLUP);
+  //pinMode(relay1, OUTPUT);
+  //pinMode(relay2, OUTPUT);
 
-  pinMode(lockLatch, INPUT_PULLUP);
-  pinMode(lockUnLatch, INPUT_PULLUP);
-  pinMode(statusLED, INPUT_PULLUP);
-
-  attachInterrupt(digitalPinToInterrupt(statusLED), StatusDecode, CHANGE);
-  attachInterrupt(digitalPinToInterrupt(lockLatch), LockOn, RISING);
-  attachInterrupt(digitalPinToInterrupt(lockUnLatch), LockOff, RISING);
-
-  digitalWrite(relay1, HIGH);
-  digitalWrite(relay2, HIGH);
-
+  //pinMode(lockLatch, INPUT_PULLUP);
+  //pinMode(lockUnLatch, INPUT_PULLUP);
+  //pinMode(statusLED, INPUT_PULLUP);
+ 
   serialMutex = xSemaphoreCreateMutex();
+
+  WiFi.begin(ssid, password);
 
   if (TFT_BL > 0)
   {
@@ -1152,14 +1007,12 @@ void setup()
   tft.setTextDatum(MC_DATUM);
   tft.setTextSize(1);
 
-  Serial.print("TFT setup complete ");
-
-  WiFi.begin(ssid, password);
+  //Serial.print("TFT setup complete ");
 
   if (TFT_BL > 0)
   {                          // TFT_BL has been set in the TFT_eSPI library in the User Setup file TTGO_T_Display.h
     pinMode(TFT_BL, OUTPUT); // Set backlight pin to output mode
-    //digitalWrite(TFT_BL, TFT_BACKLIGHT_ON); // Turn backlight on. TFT_BACKLIGHT_ON has been set in the TFT_eSPI library in the User Setup file TTGO_T_Display.h
+    // digitalWrite(TFT_BL, TFT_BACKLIGHT_ON); // Turn backlight on. TFT_BACKLIGHT_ON has been set in the TFT_eSPI library in the User Setup file TTGO_T_Display.h
   }
 
   tft.setSwapBytes(true);
@@ -1177,40 +1030,39 @@ void setup()
           espDelay(1000);
       }
     */
-  //tft.fillScreen(TFT_BLACK);
-  button_init();
+  // tft.fillScreen(TFT_BLACK);
 
   esp_adc_cal_characteristics_t adc_chars;
   esp_adc_cal_value_t val_type = esp_adc_cal_characterize((adc_unit_t)ADC_UNIT_1, (adc_atten_t)ADC1_CHANNEL_6, (adc_bits_width_t)ADC_WIDTH_BIT_12, 1100, &adc_chars);
-  //Check type of calibration value used to characterize ADC
+  // Check type of calibration value used to characterize ADC
   if (val_type == ESP_ADC_CAL_VAL_EFUSE_VREF)
   {
-    Serial.printf("eFuse Vref:%u mV", adc_chars.vref);
+    //Serial.printf("eFuse Vref:%u mV", adc_chars.vref);
     vref = adc_chars.vref;
   }
   else if (val_type == ESP_ADC_CAL_VAL_EFUSE_TP)
   {
-    Serial.printf("Two Point --> coeff_a:%umV coeff_b:%umV\n", adc_chars.coeff_a, adc_chars.coeff_b);
+    //Serial.printf("Two Point --> coeff_a:%umV coeff_b:%umV\n", adc_chars.coeff_a, adc_chars.coeff_b);
   }
   else
   {
-    Serial.println("Default Vref: 1100mV");
+   //  Serial.println("Default Vref: 1100mV");
   }
 
   while (WiFi.status() != WL_CONNECTED)
   {
     delay(500);
-    Serial.println("Connecting to WiFi..");
+    //Serial.println("Connecting to WiFi..");
   }
   tft.fillScreen(TFT_BLACK);
   tft.setTextColor(TFT_ORANGE); // Clear screen
-  //tft.setTextDatum(BC_DATUM);
+  // tft.setTextDatum(BC_DATUM);
 
-  tft.setFreeFont(CF_RT24); //CF_OL24 CF_RT2  CF_Y32
+  tft.setFreeFont(CF_RT24); // CF_OL24 CF_RT2  CF_Y32
 
   tft.drawString("CASARIA", 80, 110, GFXFF); // Print the string name of the
   tft.setFreeFont(CF_RT24);
-  Serial.println("Connected to the WiFi network");
+  //Serial.println("Connected to the WiFi network");
 
   client.setServer(mqttServer, mqttPort);
   client.setCallback(callback);
@@ -1231,7 +1083,7 @@ void setup()
       }
       }  */
 
-  //Heltec.begin(true /*DisplayEnable Enable*/, false /*LoRa Disable*/, true /*Serial Enable*/);
+  // Heltec.begin(true /*DisplayEnable Enable*/, false /*LoRa Disable*/, true /*Serial Enable*/);
   /*
       ui.setTargetFPS(30);
 
@@ -1260,31 +1112,31 @@ void setup()
 
     */
 
-  geolocation(); //get latitude/longitude from external IP address (used to find Time zone)
-  timeZone();    //used to get time zone
+  geolocation(); // get latitude/longitude from external IP address (used to find Time zone)
+  timeZone();    // used to get time zone
 
   timeClient.begin();
-  timeClient.setTimeOffset(gmtOffset_sec); //timeClient.setTimeOffset(3600);
+  timeClient.setTimeOffset(gmtOffset_sec); // timeClient.setTimeOffset(3600);
 
   tft.setTextSize(1);
 
-  Serial.print("location amd timezone determined\n ");
+  //Serial.print("location amd timezone determined\n ");
 
   xTaskCreate(updateNTP, "NTP Client", 4096, NULL, 3, NULL);
-  xTaskCreate(updateScreen, "Screen", 4096, NULL, 10, NULL);
+  xTaskCreate(updateScreen, "Screen", 4096, NULL, 3, NULL);
 
-  P.begin();
+  MD.begin();
 #if ENA_SPRITE
-  P.setSpriteData(pacman1, W_PMAN1, F_PMAN1, pacman2, W_PMAN2, F_PMAN2);
+  MD.setSpriteData(pacman1, W_PMAN1, F_PMAN1, pacman2, W_PMAN2, F_PMAN2);
 #endif
 
   for (uint8_t i = 0; i < ARRAY_SIZE(catalog); i++)
   {
-    catalog[i].speed *= P.getSpeed();
-    catalog[i].pause *= 500;
+    catalog[i].speed *= MD.getSpeed();
+    catalog[i].pause *= 400;
   }
 
-  P.setIntensity(MATRIX_INTENSITY);
+  MD.setIntensity(displayIntensity);
 
 #ifdef LED_STATUS_FLASH
   pinMode(STATUS_LED, OUTPUT);
@@ -1302,7 +1154,7 @@ void setup()
     watchdog.detach();
     if (!wifiManager.startConfigPortal(SSID, NULL))
     {
-      Serial.println(F("Config Portal Failed!"));
+      // Serial.println(F("Config Portal Failed!"));
       timeout_cb();
     }
   }
@@ -1314,7 +1166,7 @@ void setup()
     wifiManager.setAPCallback(configModeCallback);
     if (!wifiManager.autoConnect())
     {
-      Serial.println(F("Connection Failed!"));
+      //Serial.println(F("Connection Failed!"));
       timeout_cb();
     }
 
@@ -1329,12 +1181,12 @@ void setup()
 
   if (WiFi.waitForConnectResult() != WL_CONNECTED)
   {
-    Serial.println(F("Connection Failed!"));
+   // Serial.println(F("Connection Failed!"));
     timeout_cb();
   }
 
-  Serial.print(F("IP address: "));
-  Serial.println(WiFi.localIP());
+  //Serial.print(F("IP address: "));
+  //Serial.println(WiFi.localIP());
 
 #ifdef LED_STATUS_FLASH
   flasher.detach();
@@ -1343,11 +1195,11 @@ void setup()
 
 #ifdef HTTP_OTA
   // Check server for firmware updates
-  Serial.print("Checking for firmware updates from server http://");
-  Serial.print(HTTP_OTA_ADDRESS);
-  Serial.print(":");
-  Serial.print(HTTP_OTA_PORT);
-  Serial.println(HTTP_OTA_PATH);
+  //Serial.print("Checking for firmware updates from server http://");
+  //Serial.print(HTTP_OTA_ADDRESS);
+  //Serial.print(":");
+  //Serial.print(HTTP_OTA_PORT);
+  //Serial.println(HTTP_OTA_PATH);
 
   httpOTAquery();
 
@@ -1358,75 +1210,44 @@ void setup()
   ArduinoOTA.setPort(ARDUINO_OTA_PORT);
   ArduinoOTA.setHostname(SSID);
   ArduinoOTA.setPassword(ARDUINO_OTA_PASSWD);
-  ArduinoOTA.onStart([]() {
+  ArduinoOTA.onStart([]()
+                     {
     watchdog.detach();
-    Serial.println("Start");
-  });
-  ArduinoOTA.onEnd([]() {
-    Serial.println("\nEnd");
-  });
-  ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
-    Serial.printf("Progress: %u%%\r", (progress / (total / 100)));
-  });
-  ArduinoOTA.onError([](ota_error_t error) {
+   ///Serial.println("Start"); });
+  ArduinoOTA.onEnd([]()
+                   { /*Serial.println("\nEnd");*/ });
+  ArduinoOTA.onProgress([](unsigned int progress, unsigned int total)
+                        { /*Serial.printf("Progress: %u%%\r", (progress / (total / 100)));*/ };
+  ArduinoOTA.onError([](ota_error_t error
+                     {
     Serial.printf("Error[%u]: ", error);
     if (error == OTA_AUTH_ERROR)
-      Serial.println("Auth Failed");
+      //Serial.println("Auth Failed");
     else if (error == OTA_BEGIN_ERROR)
-      Serial.println("Begin Failed");
+     // Serial.println("Begin Failed");
     else if (error == OTA_CONNECT_ERROR)
-      Serial.println("Connect Failed");
+     // Serial.println("Connect Failed");
     else if (error == OTA_RECEIVE_ERROR)
-      Serial.println("Receive Failed");
+      //Serial.println("Receive Failed");
     else if (error == OTA_END_ERROR)
-      Serial.println("End Failed");
-  });
+      //Serial.println("End Failed"); });
   ArduinoOTA.begin();
 #endif
 
-  Serial.print("Starting  3 more RTOS tasks\n ");
+  //Serial.print("Starting  3 more RTOS tasks\n ");
 
   xTaskCreate(updatePubSub, "PubSub", 4096, NULL, 3, NULL);
-  xTaskCreate(updateMatrix, "MaxMatrix", 4096, NULL, 4, NULL);
-  xTaskCreate(auxTask, "auxTask", 4086, NULL, 2, NULL);
+  xTaskCreate(updateMatrix, "MaxMatrix", 4096, NULL, 1,  NULL);
+  xTaskCreate(auxTask, "auxTask", 4086, NULL, 3, NULL);
 
-  Serial.printf("RTOS tasks running %d \n ", now());
+ //Serial.printf("RTOS tasks running %d \n ", now());
 }
 
-astroSunTimes getSunRiseSunSetTime(float latitude, float longitude, float elevation, long unixtime)
-{
-  int ayear, amon, aday;
-  ayear = year(unixtime);
-  amon = month(unixtime);
-  aday = day(unixtime);   
-
-  long JDN = 367 * ayear - (7 * (ayear + 5001 + (amon - 9) / 7)) / 4 + (275 * amon) / 9 + aday + 1729777;
-  float n = JDN * 2451545.0 + 0.0008;
-  float J = n - (longitude) / 360;                     // mean solar TIME
-  float M = fmodf((357.5291 + 0.98560028 * J), 360.0); //solar Anamoly  aoiBut c that that that that
-  float C = 1.9148 * sin(M) + 0.0200 * sin(2 * M) + 0.0003 * sin(3 * M);
-  float LAMBDA = fmodf((M + C + 180 + 102.9372), 360.0);
-  float sin_DELTA = sin(LAMBDA) * sin(23.44);
-  float OMEGA_ZER0 = (sin(-.083 - 2.076 * sqrt(elevation) / 60) - sin(latitude) * sin_DELTA) /
-                     (cos(latitude) * cos(asin(sin_DELTA)));
-  float Jtransit = 2451545.0 + J + 0.0053 * sin(M) - 0.0069 * sin(2 * LAMBDA);
-
-
-  Serial.printf("JDN: %d, n: %f12.6 /n", JDN, n);
-  
-  float sunrise = Jtransit - (OMEGA_ZER0 / 360) - JDN;
-  float sunset = Jtransit + (OMEGA_ZER0 / 360) - JDN;
-  astroSunTimes suntimes;
-
-  suntimes.sunRise = sunrise;
-  suntimes.sunSet = sunset;
-  return suntimes;
-}
-
-void loop()
+/* void loop()
 {
   esp_task_wdt_reset();
   vTaskDelay(1);
 
   //}
 }
+*/

@@ -1,0 +1,82 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13192
+load:0x40080400,len:3028
+entry 0x400805e4
+[     8][D][esp32-hal-cpu.c:244] setCpuFrequencyMhz(): PLL: 480 / 2 = 240 Mhz, APB: 80000000 Hz
+Start
+E (34) gpio: GPIO can only be used as input mode
+[    41][E][esp32-hal-gpio.c:130] __pinMode(): GPIO config failed
+[    64][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 0 - WIFI_READY
+[   164][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 2 - STA_START
+[   237][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 4 - STA_CONNECTED
+[   432][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 7 - STA_GOT_IP
+[   432][D][WiFiGeneric.cpp:1098] _eventCallback(): STA IP: 192.168.1.249, MASK: 255.255.255.0, GW: 192.168.1.1
+TFT setup complete eFuse Vref:1079 mVConnected to the WiFi network
+[  3819][D][HTTPClient.cpp:302] beginInternal(): protocol: http, host: ip-api.com port: 80 url: /json
+[  3820][D][HTTPClient.cpp:597] sendRequest(): request type: 'GET' redirCount: 0
+
+[  9235][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[  9236][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 200 - BEACON_TIMEOUT
+[  9239][D][WiFiGeneric.cpp:1077] _eventCallback(): WiFi Reconnect Running
+[ 10827][E][WiFiGeneric.cpp:1578] hostByName(): DNS Failed for ip-api.com
+[ 10828][D][HTTPClient.cpp:1162] connect(): failed connect to ip-api.com:80
+[ 10830][W][HTTPClient.cpp:1482] returnError(): error(-1): connection refused
+[ 10836][D][HTTPClient.cpp:407] disconnect(): tcp is closed
+
+{}parseObject() failed
+parseObject() failed
+location amd timezone determined
+ 
+begin: exit
+[ 10855][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[ 10857][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+Connection Failed!
+Watchdog timeout...
+[ 11667][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 11668][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 11671][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+[ 11884][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[ 11885][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[ 12906][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[ 12906][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[ 13927][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[ 13928][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[ 14097][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 14098][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 14101][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+[ 14949][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[ 14950][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[ 15970][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[ 15971][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[ 16526][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 16526][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 16529][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+[ 16992][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[ 16992][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[ 18013][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[ 18014][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[ 18952][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 18953][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 18956][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+[ 19035][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[ 19035][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[ 20057][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[ 20057][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[ 21078][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[ 21079][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[ 21379][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 21379][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 21383][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
+[ 22100][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[ 22100][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[ 23121][E][WiFiUdp.cpp:172] beginPacket(): could not get host from dns: 11
+[ 23122][E][WiFiUdp.cpp:185] endPacket(): could not send data: 118
+[ 23805][D][WiFiGeneric.cpp:1035] _eventCallback(): Arduino Event: 5 - STA_DISCONNECTED
+[ 23806][W][WiFiGeneric.cpp:1057] _eventCallback(): Reason: 201 - NO_AP_FOUND
+[ 23809][D][WiFiGeneric.cpp:1081] _eventCallback(): WiFi AutoReconnect Running
